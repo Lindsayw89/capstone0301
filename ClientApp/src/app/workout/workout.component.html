@@ -1,0 +1,59 @@
+<h1 id="tableLabel">Workouts</h1>
+
+<p *ngIf="!workouts"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="workouts">
+  <thead>
+    <tr>
+      <th>Workout</th>
+      <th>Desctiption</th>
+      <th>Description</th>
+      <th>Calories burned</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let wo of workouts">
+      <td>{{ wo.title }}</td>
+      <td>{{ wo.description }}</td>
+      <td>{{ wo.workoutType }}</td>
+      <td>{{ wo.calories }}</td>
+      <td>{{ wo.workoutDate }}</td>
+      <button mat-raised-button (click)="deleteWorkout(wo.id)">d</button>
+    </tr>
+  </tbody>
+</table>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+  
+   
+    <mat-label>Title</mat-label>
+<input matInput [(ngModel)]="newWorkout.title" name="title" placeholder="name of workout"/>
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+<mat-label>Description</mat-label>
+<input matInput [(ngModel)]="newWorkout.description" name="description" placeholder="Sets? How many?" />
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+<mat-label>Type of Workout</mat-label>
+<input matInput [(ngModel)]="newWorkout.workoutType" name="workoutType" placeholder="legs, arms, core..?" />
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+<mat-label>Calories Burned</mat-label>
+<input matInput type="number" [(ngModel)]="newWorkout.calories" name="calories" placeholder="How many calories will this burn" />
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+<mat-label>Date</mat-label>
+<input  matInput type ="date" [(ngModel)]="newWorkout.workoutDate" name="workoutDate" placeholder="date"/>
+</mat-form-field>
+
+<button mat-raised-button (click)="saveWorkout()">Save</button>
+
+</form>
+
+

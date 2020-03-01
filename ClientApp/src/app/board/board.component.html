@@ -1,0 +1,26 @@
+<h1 id="tableLabel">Chore Boards</h1>
+
+<button (click)="saveBoard()">Add Board</button>
+
+<p *ngIf="!boards"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="boards">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <tr *ngFor="let board of boards">
+      <td>{{ board.name }}</td>
+      
+    </tr>
+  </tbody>
+</table>
+Name
+<input [(ngModel)]="newBoard.name" name="name" />
+
+
+<button (click)="saveBoard()">Add Board</button>
