@@ -5,22 +5,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace capstone.Models
 {
-    public class Workout
+    public class WorkoutExercise
     {
+        
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-
         public int id { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-       
-        public DateTime workoutDay { get; set; }
 
-        [InverseProperty("workout")]
-        public List<WorkoutExercise> workoutExercises { get; set; }
+        public int ExerciseForeignKey { get; set; }
+        [ForeignKey("ExerciseForeignKey")]
+        public Exercise exercise { get; set; }
+
+        public int WorkoutForeignKey { get; set; }
+        [ForeignKey("WorkoutForeignKey")]
+        public Workout workout{ get; set; }
+
+       
+
 
     }
 }

@@ -8,7 +8,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatFormFieldControl} from '@angular/material';
 
 @Component({
-  selector: 'app-workout',
+  selector: 'app-workout',  
   templateUrl: './workout.component.html',
   styleUrls: ['./workout.component.css']
 })

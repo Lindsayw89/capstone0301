@@ -5,10 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace capstone.Models
 {
-    public class Workout
+    public class Exercise
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
@@ -16,11 +15,11 @@ namespace capstone.Models
         public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
-       
-        public DateTime workoutDay { get; set; }
+        public ExerciseType workoutType { get; set; }
 
-        [InverseProperty("workout")]
+        [InverseProperty("exercise")]
         public List<WorkoutExercise> workoutExercises { get; set; }
+        public int calories { get; set; }
 
     }
 }

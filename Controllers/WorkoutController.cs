@@ -27,6 +27,23 @@ namespace capstone.Controllers
             return workouts;
 
         }
+
+              [HttpGet("{workoutDate}")]
+        public IEnumerable<Workout> Getdate(DateTime workoutDate)
+        {
+            
+            using (var context = new ApplicationDbContext())
+            {
+                var workoutdatelist = context.Workouts.Where(w=>w.workoutDay==workoutDate).ToList();
+               return workoutdatelist;
+                
+            }
+            
+        }
+
+
+
+
         [HttpPost]
         public Workout Post([FromBody]Workout workout)
         {
@@ -43,17 +60,10 @@ namespace capstone.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id )
         {
-          //  using (var context = new ApplicationDbContext())
-          //  {
-               
-               // context.Remove(id);
-              //  context.SaveChanges();
-              //  return NoContent();
-
 
                 using (ApplicationDbContext context = new ApplicationDbContext())
                 {
-                    var deleteworkout = context.Workouts.FirstOrDefault(w => w.Id == id);
+                    var deleteworkout = context.Workouts.FirstOrDefault(w => w.id == id);
                 if (deleteworkout != null) {
                     context.Workouts.Remove(deleteworkout);
                     context.SaveChanges();
@@ -61,11 +71,6 @@ namespace capstone.Controllers
                 }
                 return NoContent();
             }
-           
-
-           // }
-
-        
 
 
 

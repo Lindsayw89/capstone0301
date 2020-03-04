@@ -294,6 +294,45 @@ namespace capstone.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("capstone.Models.Exercise", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("calories")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("workoutTypeid")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("workoutTypeid");
+
+                    b.ToTable("Exercises");
+                });
+
+            modelBuilder.Entity("capstone.Models.ExerciseType", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.ToTable("ExerciseTypes");
+                });
+
             modelBuilder.Entity("capstone.Models.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -330,11 +369,8 @@ namespace capstone.Data.Migrations
 
             modelBuilder.Entity("capstone.Models.Workout", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("calories")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("description")
@@ -346,12 +382,30 @@ namespace capstone.Data.Migrations
                     b.Property<DateTime>("workoutDay")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("workoutType")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Workouts");
+                });
+
+            modelBuilder.Entity("capstone.Models.WorkoutExercise", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ExerciseForeignKey")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("WorkoutForeignKey")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("ExerciseForeignKey");
+
+                    b.HasIndex("WorkoutForeignKey");
+
+                    b.ToTable("WorkoutExercises");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -401,6 +455,28 @@ namespace capstone.Data.Migrations
                     b.HasOne("capstone.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("capstone.Models.Exercise", b =>
+                {
+                    b.HasOne("capstone.Models.ExerciseType", "workoutType")
+                        .WithMany()
+                        .HasForeignKey("workoutTypeid");
+                });
+
+            modelBuilder.Entity("capstone.Models.WorkoutExercise", b =>
+                {
+                    b.HasOne("capstone.Models.Exercise", "exercise")
+                        .WithMany("workoutExercises")
+                        .HasForeignKey("ExerciseForeignKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("capstone.Models.Workout", "workout")
+                        .WithMany("workoutExercises")
+                        .HasForeignKey("WorkoutForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

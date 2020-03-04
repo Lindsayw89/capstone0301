@@ -20,6 +20,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import{MatTableModule} from '@angular/material/table';
 import {MatSortModule, MatInputModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
+import { DailyComponent } from './daily/daily.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatButtonModule} from '@angular/material';
     StudentsComponent,
     TeacherComponent,
     BoardComponent,
-    WorkoutComponent
+    WorkoutComponent,
+    DailyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +48,7 @@ import {MatButtonModule} from '@angular/material';
         { path: 'teachers', component: TeacherComponent, canActivate: [AuthorizeGuard] },
         { path: 'boards', component: BoardComponent, canActivate: [AuthorizeGuard] },
         { path: 'workouts', component: WorkoutComponent, canActivate: [AuthorizeGuard] },
+        { path: 'daily', component: DailyComponent, canActivate: [AuthorizeGuard] },
     ]),
     NoopAnimationsModule, MatTableModule, MatSortModule,MatInputModule,
     MatButtonModule

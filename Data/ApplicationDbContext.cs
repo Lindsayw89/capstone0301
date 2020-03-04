@@ -18,8 +18,11 @@ namespace capstone.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Workout> Workouts { get; set; }
-        
-      
+        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<ExerciseType> ExerciseTypes { get; set; }
+        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+
+
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
