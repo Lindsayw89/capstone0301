@@ -47,7 +47,7 @@ import { DailyComponent } from './daily/daily.component';
         { path: 'students', component: StudentsComponent, canActivate: [AuthorizeGuard] },
         { path: 'teachers', component: TeacherComponent, canActivate: [AuthorizeGuard] },
         { path: 'boards', component: BoardComponent, canActivate: [AuthorizeGuard] },
-        { path: 'workouts', component: WorkoutComponent, canActivate: [AuthorizeGuard] },
+        { path: 'exercises', component: WorkoutComponent, canActivate: [AuthorizeGuard] },
         { path: 'daily', component: DailyComponent, canActivate: [AuthorizeGuard] },
     ]),
     NoopAnimationsModule, MatTableModule, MatSortModule,MatInputModule,

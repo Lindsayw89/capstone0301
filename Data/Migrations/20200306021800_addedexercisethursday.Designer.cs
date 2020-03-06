@@ -9,8 +9,8 @@ using capstone.Data;
 namespace capstone.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200304025849_addWorkoutExercise")]
-    partial class addWorkoutExercise
+    [Migration("20200306021800_addedexercisethursday")]
+    partial class addedexercisethursday
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
