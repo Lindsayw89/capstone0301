@@ -35,10 +35,8 @@ namespace capstone.Controllers
             using (var context = new ApplicationDbContext())
             {
                 var workoutdatelist = context.Workouts.Where(w=>w.workoutDay==workoutDate).ToList();
-               return workoutdatelist;
-                
-            }
-            
+               return workoutdatelist;             
+            }         
         }
 
 
@@ -56,7 +54,6 @@ namespace capstone.Controllers
         }
 
 
-
         [HttpDelete("{id}")]
         public IActionResult Delete(int id )
         {
@@ -72,14 +69,7 @@ namespace capstone.Controllers
                 return NoContent();
             }
 
-
-
         }
-
-    
-
-
-
 
     }
 }

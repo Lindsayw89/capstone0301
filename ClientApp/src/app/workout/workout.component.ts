@@ -13,41 +13,41 @@ import {MatFormFieldControl} from '@angular/material';
   styleUrls: ['./workout.component.css']
 })
 export class WorkoutComponent implements OnInit {
-  public workouts: Workout[];
-  public newWorkout: Workout = { title: '', description: '', workoutType:'', calories:0, workoutDate: new Date(), id: 0}
+  public exercises: Exercise[];
+  public newWorkout: Exercise = { title: '', description: '', workoutType:0, calories:0,  id: 0}
 
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
  async  ngOnInit() {
-    this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
+    this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
   }
 
   async saveWorkout() {
     console.log(this.newWorkout);
-    await this.http.post<Workout[]>(this.baseUrl + 'workout', this.newWorkout).toPromise();
-    this.newWorkout = { title: '', description: '', workoutType:'', calories:0 , workoutDate: new Date(), id: 0};
-    this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
+    await this.http.post<Exercise[]>(this.baseUrl + 'exercise', this.newWorkout).toPromise();
+    this.newWorkout = { title: '', description: '', workoutType:0, calories:0 , id: 0};
+    this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
 
 }
 
 async deleteWorkout(id:number) {
   
-  await this.http.delete<Workout>(this.baseUrl + 'workout/' + id).toPromise();
+  await this.http.delete<Exercise>(this.baseUrl + 'exercise/' + id).toPromise();
 
-  this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
-
-}
-
+  this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
 
 }
 
-interface Workout {
+
+}
+
+interface Exercise {
   title: string;
   description: string;
-  workoutType: string;
+  workoutType: number;
   calories: 0;
-  workoutDate: Date;
+workoutTypeId: number
   id: number;
 
 }

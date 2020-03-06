@@ -1,24 +1,24 @@
-<h1 id="tableLabel">Workouts</h1>
+<h1 id="tableLabel">Exercises</h1>
 
-<p *ngIf="!workouts"><em>Loading...</em></p>
+<p *ngIf="!exercises"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="workouts">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="exercises">
   <thead>
     <tr>
-      <th>Workout</th>
-      <th>Desctiption</th>
+      <th>Exercise</th>
       <th>Description</th>
+      <th>Type of workout</th>
       <th>Calories burned</th>
-      <th>Date</th>
+  
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let wo of workouts">
+    <tr *ngFor="let wo of exercises">
       <td>{{ wo.title }}</td>
       <td>{{ wo.description }}</td>
       <td>{{ wo.workoutType }}</td>
       <td>{{ wo.calories }}</td>
-      <td>{{ wo.workoutDate }}</td>
+   
       <button mat-raised-button (click)="deleteWorkout(wo.id)">d</button>
     </tr>
   </tbody>
@@ -47,10 +47,6 @@
 <input matInput type="number" [(ngModel)]="newWorkout.calories" name="calories" placeholder="How many calories will this burn" />
 </mat-form-field>
 
-<mat-form-field class="example-full-width">
-<mat-label>Date</mat-label>
-<input  matInput type ="date" [(ngModel)]="newWorkout.workoutDate" name="workoutDate" placeholder="date"/>
-</mat-form-field>
 
 <button mat-raised-button (click)="saveWorkout()">Save</button>
 
