@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace capstone.Data.Migrations
 {
-    public partial class addWorkoutExercise : Migration
+    public partial class addedexercisethursday : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
