@@ -2,49 +2,51 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using capstone.Data;
+using capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
-using capstone.Models;
-using capstone.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace capstone.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class ExerciseController : ControllerBase
+    public class WorkoutExercisesController : Controller
     {
-        
+
 
         [HttpGet]
-        public IEnumerable<Exercise> Get()
+        public IEnumerable<WorkoutExercise> Get()
         {
-            Exercise[] exercises = null;
+            WorkoutExercise[] workoutExercises = null;
             using (var context = new ApplicationDbContext())
             {
-                return context.Exercises
-                                        .Include(b => b.workoutType)
-                                        //.Include(exer => exer.workoutExercises)
-                                        //    .ThenInclude(workExer => workExer.Select(i => i.workout))
-                                        .ToArray();
+                workoutExercises = context.WorkoutExercises
+                            .Include(we => we.exercise)
+                            .Include(we => we.workout).ToArray();
+                   
             }
-            return exercises;
+            return workoutExercises;
 
         }
 
 
+   
+
 
 
         [HttpPost]
-        public Exercise Post([FromBody]Exercise exercise)
+        public WorkoutExercise Post([FromBody]WorkoutExercise workoutExercise)
         {
             using (var context = new ApplicationDbContext())
             {
-                context.Exercises.Add(exercise);
+                context.WorkoutExercises.Add(workoutExercise);
                 context.SaveChanges();
             }
-            return exercise;
+            return workoutExercise;
         }
 
 
@@ -54,10 +56,10 @@ namespace capstone.Controllers
 
             using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                var deleteExercise = context.Exercises.FirstOrDefault(w => w.id == id);
-                if (deleteExercise != null)
+                var deleteworkoutEx = context.WorkoutExercises.FirstOrDefault(w => w.id == id);
+                if (deleteworkoutEx != null)
                 {
-                    context.Exercises.Remove(deleteExercise);
+                    context.WorkoutExercises.Remove(deleteworkoutEx);
                     context.SaveChanges();
 
                 }
@@ -66,7 +68,6 @@ namespace capstone.Controllers
 
         }
 
-
-
     }
 }
+

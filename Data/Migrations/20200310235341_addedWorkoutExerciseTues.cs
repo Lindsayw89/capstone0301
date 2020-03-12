@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace capstone.Data.Migrations
 {
-    public partial class addedexercisethursday : Migration
+    public partial class addedWorkoutExerciseTues : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -73,18 +73,18 @@ namespace capstone.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     title = table.Column<string>(nullable: true),
                     description = table.Column<string>(nullable: true),
-                    workoutTypeid = table.Column<int>(nullable: true),
+                    exerciseTypeId = table.Column<int>(nullable: false),
                     calories = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Exercises", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Exercises_ExerciseTypes_workoutTypeid",
-                        column: x => x.workoutTypeid,
+                        name: "FK_Exercises_ExerciseTypes_exerciseTypeId",
+                        column: x => x.exerciseTypeId,
                         principalTable: "ExerciseTypes",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,9 +114,9 @@ namespace capstone.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Exercises_workoutTypeid",
+                name: "IX_Exercises_exerciseTypeId",
                 table: "Exercises",
-                column: "workoutTypeid");
+                column: "exerciseTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WorkoutExercises_ExerciseForeignKey",

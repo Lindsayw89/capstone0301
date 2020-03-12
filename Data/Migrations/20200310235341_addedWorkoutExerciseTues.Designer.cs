@@ -9,8 +9,8 @@ using capstone.Data;
 namespace capstone.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200306021800_addedexercisethursday")]
-    partial class addedexercisethursday
+    [Migration("20200310235341_addedWorkoutExerciseTues")]
+    partial class addedWorkoutExerciseTues
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -308,15 +308,15 @@ namespace capstone.Data.Migrations
                     b.Property<string>("description")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("exerciseTypeId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("workoutTypeid")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("id");
 
-                    b.HasIndex("workoutTypeid");
+                    b.HasIndex("exerciseTypeId");
 
                     b.ToTable("Exercises");
                 });
@@ -465,7 +465,9 @@ namespace capstone.Data.Migrations
                 {
                     b.HasOne("capstone.Models.ExerciseType", "workoutType")
                         .WithMany()
-                        .HasForeignKey("workoutTypeid");
+                        .HasForeignKey("exerciseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("capstone.Models.WorkoutExercise", b =>

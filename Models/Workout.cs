@@ -20,7 +20,7 @@ namespace capstone.Models
         public DateTime workoutDay { get; set; }
 
         [InverseProperty("workout")]
-        public List<WorkoutExercise> workoutExercises { get; set; }
+        public List<WorkoutExercise> workoutExercises { get; set; } // only will be on backend make believe
 
     }
 }

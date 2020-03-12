@@ -6,6 +6,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatInput} from '@angular/material';
 import {MatSort} from '@angular/material/sort';
 import {MatFormFieldControl} from '@angular/material';
+import {Workout} from '../daily/daily.component';
 
 @Component({
   selector: 'app-workout',  
@@ -14,7 +15,7 @@ import {MatFormFieldControl} from '@angular/material';
 })
 export class WorkoutComponent implements OnInit {
   public exercises: Exercise[];
-  public newWorkout: Exercise = { title: '', description: '', workoutType:0, calories:0,  id: 0}
+  public newExercise: Exercise = {id: undefined, title: '', description: '', exerciseTypeId:undefined,  workoutType:undefined,  workoutExercises:  [] ,calories:0 }
 
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
@@ -24,9 +25,9 @@ export class WorkoutComponent implements OnInit {
   }
 
   async saveWorkout() {
-    console.log(this.newWorkout);
-    await this.http.post<Exercise[]>(this.baseUrl + 'exercise', this.newWorkout).toPromise();
-    this.newWorkout = { title: '', description: '', workoutType:0, calories:0 , id: 0};
+    console.log(this.newExercise);
+    await this.http.post<Exercise[]>(this.baseUrl + 'exercise', this.newExercise).toPromise();
+    this.newExercise = {id: undefined, title: '', description: '', exerciseTypeId:undefined,  workoutType:undefined,  workoutExercises:  [] ,calories:0 }
     this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
 
 }
@@ -39,15 +40,19 @@ async deleteWorkout(id:number) {
 
 }
 
-
 }
 
-interface Exercise {
+export interface ExerciseType {
+  id: number;
+  title: string;
+}
+
+export interface Exercise {
+  id: number;
   title: string;
   description: string;
-  workoutType: number;
-  calories: 0;
-workoutTypeId: number
-  id: number;
-
+  exerciseTypeId : number;
+  workoutType: ExerciseType;
+  workoutExercises: Workout[]
+  calories: number;
 }

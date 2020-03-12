@@ -17,10 +17,10 @@ namespace capstone.Models
         public string description { get; set; }
 
 
-        public int exerciseTypeId { get; set; }
+        public int exerciseTypeId { get; set; } // this will be the FKey in the database
 
         [ForeignKey("exerciseTypeId")]
-        public ExerciseType workoutType { get; set; }
+        public ExerciseType workoutType { get; set; } // this will be in c#
 
 
         [InverseProperty("exercise")]

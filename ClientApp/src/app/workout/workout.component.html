@@ -13,13 +13,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let wo of exercises">
-      <td>{{ wo.title }}</td>
-      <td>{{ wo.description }}</td>
-      <td>{{ wo.workoutType }}</td>
-      <td>{{ wo.calories }}</td>
+    <tr *ngFor="let e of exercises">
+      <td>{{ e.title }}</td>
+      <td>{{ e.description }}</td>
+      <td>{{ e.workoutType.title }}</td>
+      <td>{{ e.calories }}</td>
    
-      <button mat-raised-button (click)="deleteWorkout(wo.id)">d</button>
+      <button mat-raised-button (click)="deleteWorkout(e.id)">d</button>
     </tr>
   </tbody>
 </table>
@@ -29,23 +29,31 @@
   
    
     <mat-label>Title</mat-label>
-<input matInput [(ngModel)]="newWorkout.title" name="title" placeholder="name of workout"/>
+<input matInput [(ngModel)]="newExercise.title" name="title" placeholder="name of workout"/>
 </mat-form-field>
 
 <mat-form-field class="example-full-width">
 <mat-label>Description</mat-label>
-<input matInput [(ngModel)]="newWorkout.description" name="description" placeholder="Sets? How many?" />
+<input matInput [(ngModel)]="newExercise.description" name="description" placeholder="Sets? How many?" />
 </mat-form-field>
 
-<mat-form-field class="example-full-width">
-<mat-label>Type of Workout</mat-label>
-<input matInput [(ngModel)]="newWorkout.workoutType" name="workoutType" placeholder="legs, arms, core..?" />
-</mat-form-field>
 
 <mat-form-field class="example-full-width">
-<mat-label>Calories Burned</mat-label>
-<input matInput type="number" [(ngModel)]="newWorkout.calories" name="calories" placeholder="How many calories will this burn" />
-</mat-form-field>
+  <mat-label>Type of Exercise</mat-label>
+  <input matInput [(ngModel)]="newExercise.exerciseTypeId" name="exerciseType" placeholder="legs, arms, core..?" />
+  </mat-form-field>
+
+  
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Calories Burned</mat-label>
+      <input matInput type="number" [(ngModel)]="newExercise.calories" name="calories" placeholder="How many calories will this burn" />
+      </mat-form-field>
+
+
+
+
+
 
 
 <button mat-raised-button (click)="saveWorkout()">Save</button>

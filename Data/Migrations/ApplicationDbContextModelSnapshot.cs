@@ -306,15 +306,15 @@ namespace capstone.Data.Migrations
                     b.Property<string>("description")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("exerciseTypeId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("workoutTypeid")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("id");
 
-                    b.HasIndex("workoutTypeid");
+                    b.HasIndex("exerciseTypeId");
 
                     b.ToTable("Exercises");
                 });
@@ -463,7 +463,9 @@ namespace capstone.Data.Migrations
                 {
                     b.HasOne("capstone.Models.ExerciseType", "workoutType")
                         .WithMany()
-                        .HasForeignKey("workoutTypeid");
+                        .HasForeignKey("exerciseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("capstone.Models.WorkoutExercise", b =>

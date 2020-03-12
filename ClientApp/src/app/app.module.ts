@@ -18,9 +18,13 @@ import { BoardComponent } from './board/board.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import{MatTableModule} from '@angular/material/table';
-import {MatSortModule, MatInputModule} from '@angular/material';
+import {MatSortModule, MatInputModule, MatListModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import { DailyComponent } from './daily/daily.component';
+import { PopupWorkoutComponent } from './popup-workout/popup-workout.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
 
 @NgModule({
   declarations: [
@@ -33,13 +37,16 @@ import { DailyComponent } from './daily/daily.component';
     TeacherComponent,
     BoardComponent,
     WorkoutComponent,
-    DailyComponent
+    DailyComponent,
+    PopupWorkoutComponent
+   
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ApiAuthorizationModule,
+    MatListModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -48,14 +55,18 @@ import { DailyComponent } from './daily/daily.component';
         { path: 'teachers', component: TeacherComponent, canActivate: [AuthorizeGuard] },
         { path: 'boards', component: BoardComponent, canActivate: [AuthorizeGuard] },
         { path: 'exercises', component: WorkoutComponent, canActivate: [AuthorizeGuard] },
-        { path: 'daily', component: DailyComponent, canActivate: [AuthorizeGuard] },
+        { path: 'workoutexercises', component: DailyComponent, canActivate: [AuthorizeGuard] },
     ]),
     NoopAnimationsModule, MatTableModule, MatSortModule,MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatBottomSheetModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    //{ provide: MatBottomSheet, useValue: {}}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent], 
+  entryComponents: [PopupWorkoutComponent]
 })
 export class AppModule { }

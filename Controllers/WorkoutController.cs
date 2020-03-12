@@ -7,6 +7,7 @@ using capstone.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace capstone.Controllers
 {
@@ -22,13 +23,24 @@ namespace capstone.Controllers
             Workout[] workouts = null;
             using (var context = new ApplicationDbContext())
             {
-                workouts = context.Workouts.ToArray();
+                return context.Workouts
+                    .Include(w=>w.workoutExercises)
+                      .ThenInclude(we=>we.exercise)
+                    .ToArray();
             }
-            return workouts;
+           
 
         }
 
-              [HttpGet("{workoutDate}")]
+
+
+
+
+
+
+
+
+        [HttpGet("{workoutDate}")]
         public IEnumerable<Workout> Getdate(DateTime workoutDate)
         {
             

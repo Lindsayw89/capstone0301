@@ -14,9 +14,9 @@ namespace capstone.Models
         [Key]
         public int id { get; set; }
 
-        public int ExerciseForeignKey { get; set; }
+        public int ExerciseForeignKey { get; set; }  // this will be the FKey in the database
         [ForeignKey("ExerciseForeignKey")]
-        public Exercise exercise { get; set; }
+        public Exercise exercise { get; set; } // this will be c#
 
         public int WorkoutForeignKey { get; set; }
         [ForeignKey("WorkoutForeignKey")]

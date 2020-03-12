@@ -1,0 +1,27 @@
+<h1 id="tableLabel">Daily Workouts</h1>
+
+<p *ngIf="!workouts"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" >
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Day</th>
+     
+  
+    </tr>
+  </thead>
+  <tbody *ngIf="workouts">
+    <tr *ngFor="let dw of workouts">
+      
+      <td>{{ dw.title}}</td>
+      <td>{{ dw.description }}</td>
+      <td>{{ dw.workoutDay }}</td>
+     
+      <button mat-raised-button>d</button>
+      <button  mat-raised-button (click)="test(dw)">test</button>
+      <button mat-raised-button (click)="openBottomSheet(dw)">Open file</button>
+    </tr>
+  </tbody>
+</table>
