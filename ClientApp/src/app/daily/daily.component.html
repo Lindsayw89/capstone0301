@@ -17,11 +17,11 @@
       
       <td>{{ dw.title}}</td>
       <td>{{ dw.description }}</td>
-      <td>{{ dw.workoutDay }}</td>
+      <td>{{ dw.workoutDay | date: "shortDate" }}</td>
      
       <button mat-raised-button>d</button>
       <button  mat-raised-button (click)="test(dw)">test</button>
-      <button mat-raised-button (click)="openBottomSheet(dw)">Open file</button>
+      <button mat-raised-button (click)="openBottomSheet(dw)">See More</button>
     </tr>
   </tbody>
 </table>

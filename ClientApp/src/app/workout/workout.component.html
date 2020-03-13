@@ -41,7 +41,11 @@
 <mat-form-field class="example-full-width">
   <mat-label>Type of Exercise</mat-label>
   <input matInput [(ngModel)]="newExercise.exerciseTypeId" name="exerciseType" placeholder="legs, arms, core..?" />
-  </mat-form-field>
+
+  <select [(ngModel)]="newExercise.exerciseTypeId" >
+  <option *ngFor="let e of newExercise.workoutType"[value]="e.exerciseTypeId">{{ e.workoutType.title}}</option>
+</select>  
+</mat-form-field>
 
   
 

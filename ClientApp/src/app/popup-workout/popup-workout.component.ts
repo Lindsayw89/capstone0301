@@ -3,6 +3,7 @@ import{ DailyComponent, Workout} from '../daily/daily.component';
 import {MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@angular/material/bottom-sheet';
 import {WorkoutComponent} from '../workout/workout.component';
 
+
 @Component({
   selector: 'app-popup-workout',
   templateUrl: './popup-workout.component.html',

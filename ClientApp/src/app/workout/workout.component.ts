@@ -56,3 +56,4 @@ export interface Exercise {
   workoutExercises: Workout[]
   calories: number;
 }
+
