@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -24,7 +24,7 @@ import { DailyComponent } from './daily/daily.component';
 import { PopupWorkoutComponent } from './popup-workout/popup-workout.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     WorkoutComponent,
     DailyComponent,
     PopupWorkoutComponent
+    
    
   ],
   imports: [
@@ -61,6 +62,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatButtonModule,
     MatDialogModule,
     MatBottomSheetModule,
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },

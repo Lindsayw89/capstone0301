@@ -24,38 +24,47 @@
   </tbody>
 </table>
 
-<form class="example-form">
+<form name="exerciseForm">
   <mat-form-field class="example-full-width">
   
    
-    <mat-label>Title</mat-label>
+    <mat-label for="title">Title</mat-label>
 <input matInput [(ngModel)]="newExercise.title" name="title" placeholder="name of workout"/>
 </mat-form-field>
 
 <mat-form-field class="example-full-width">
-<mat-label>Description</mat-label>
+<mat-label for="description">Description</mat-label>
 <input matInput [(ngModel)]="newExercise.description" name="description" placeholder="Sets? How many?" />
 </mat-form-field>
 
 
-<mat-form-field class="example-full-width">
-  <mat-label>Type of Exercise</mat-label>
-  <input matInput [(ngModel)]="newExercise.exerciseTypeId" name="exerciseType" placeholder="legs, arms, core..?" />
 
-  <select [(ngModel)]="newExercise.exerciseTypeId" >
-  <option *ngFor="let e of newExercise.workoutType"[value]="e.exerciseTypeId">{{ e.workoutType.title}}</option>
-</select>  
+
+<mat-form-field>
+  <mat-label>Type</mat-label>
+  <mat-select>
+    <mat-option [(ngModel)]="newExercise.exerciseTypeId" *ngFor="let e of ET" name="type">{{e.title}}</mat-option>
+  </mat-select>
 </mat-form-field>
+<!-- <mat-form-field>
+<mat-select matNativeControl 
+*ngFor="let e of newExercise.workoutType"  [(ngModel)]="newExercise.exerciseTypeId" [formControl]="newExercise">
+  <mat-option [value]="e.workoutType.title" [workoutType]="newExercise.workoutType">{{ e.workoutType.title}}</mat-option>
+</mat-select>  
+</mat-form-field> -->
 
+<!-- <mat-form-field appearance="fill">
+  <mat-label>Select</mat-label>
+  <mat-select>
+    <mat-option value="option">Option</mat-option>
+  </mat-select>
+</mat-form-field> -->
   
 
     <mat-form-field class="example-full-width">
-      <mat-label>Calories Burned</mat-label>
+      <mat-label for="title">Calories Burned</mat-label>
       <input matInput type="number" [(ngModel)]="newExercise.calories" name="calories" placeholder="How many calories will this burn" />
       </mat-form-field>
-
-
-
 
 
 
