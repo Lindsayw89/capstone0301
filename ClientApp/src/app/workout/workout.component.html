@@ -43,9 +43,11 @@
 <mat-form-field>
   <mat-label>Type</mat-label>
   <mat-select>
-    <mat-option [(ngModel)]="newExercise.exerciseTypeId" *ngFor="let e of ET" name="type">{{e.title}}</mat-option>
+    <mat-option [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" name="type">{{e.title}}</mat-option>
+  
   </mat-select>
 </mat-form-field>
+
 <!-- <mat-form-field>
 <mat-select matNativeControl 
 *ngFor="let e of newExercise.workoutType"  [(ngModel)]="newExercise.exerciseTypeId" [formControl]="newExercise">
@@ -63,7 +65,7 @@
 
     <mat-form-field class="example-full-width">
       <mat-label for="title">Calories Burned</mat-label>
-      <input matInput type="number" [(ngModel)]="newExercise.calories" name="calories" placeholder="How many calories will this burn" />
+      <input matInput type="number"  [(ngModel)]="newExercise.calories" name="calories" placeholder="How many calories will this burn" />
       </mat-form-field>
 
 

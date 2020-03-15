@@ -19,28 +19,30 @@ export class WorkoutComponent implements OnInit {
   public exercises: Exercise[];
   public newExercise: Exercise = {id: undefined, title: '', description: '', exerciseTypeId:undefined,  workoutType:undefined ,  workoutExercises:  [] ,calories:0 }
  public ET: ExerciseType[];
+ public ExT:ExerciseType;
   exerciseForm: FormGroup;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private formBuilder: FormBuilder,) { 
-    this.exerciseForm= this.formBuilder.group({
-      title:"",
-      description:"",
-      exerciseType:0,
-      workoutType: 0,
-      calories:0
+    // this.exerciseForm= this.formBuilder.group({
+    //   title:"",
+    //   description:"",
+    //   exerciseType:0,
+    //   workoutType: 0,
+    //   calories:0
 
 
-    });
+    // });
   }
 
  async  ngOnInit() {
     this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
-    this.ET= await this.http.get<ExerciseType[]>(this.baseUrl +'exerciseTypes').toPromise();
+    this.ET= await this.http.get<ExerciseType[]>(this.baseUrl + 'ExerciseType').toPromise();
   
   // console.log(this.newExercise.workoutType.title + "newex worktyp tit")
   // console.log(this.newExercise.workoutExercises + " new ex  workouexer")
   // console.log(this.newExercise.exerciseTypeId + "newex extypeid")
 
+  console.log(this.ET);
 
 }
 
