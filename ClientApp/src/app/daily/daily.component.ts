@@ -11,8 +11,9 @@ import {PopupWorkoutComponent} from '../popup-workout/popup-workout.component';
 })
 export class DailyComponent implements OnInit {
 public dailyWorkouts:WorkoutExercise[];
-@Input() newDWorkout:WorkoutExercise;
+@Input() newDWorkout:Workout = {id: undefined, title: '', description: '',   workoutDay:new Date(),  workoutExercises:  [] }
 public workouts: Workout[];
+
 
 
   constructor(private http: HttpClient,
@@ -34,15 +35,15 @@ public workouts: Workout[];
   openBottomSheet(dw:Workout): void {
     this._bottomSheet.open(PopupWorkoutComponent, {data: dw});
   }
+ 
+  async saveDay() {
+    console.log(this.newDWorkout);
+    await this.http.post<Workout[]>(this.baseUrl + 'workout', this.newDWorkout).toPromise();
+    this.newDWorkout = {id: undefined, title: '', description: '', workoutDay: new Date(),    workoutExercises:  []  }
+    this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
 
+}
 
-
-  // async addDaily(){
-  //   await this.http.post<Workout[]>(this.baseUrl + 'workout', this.newDWorkout).toPromise();
-  //   this.newDWorkout={ title: '', description: '', workoutType:'', calories:0 , workoutDate: new Date(), id: 0};
-  //   this.todayWorkouts= await this.http.get<Workout[]>(this.baseUrl +'workout').toPromise(); // FIX
-
- // }
 
 }
 export interface WorkoutExercise {

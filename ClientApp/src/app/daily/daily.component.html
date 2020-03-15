@@ -25,3 +25,13 @@
     </tr>
   </tbody>
 </table>
+
+<form>
+  <label>Name</label>
+  <input [(ngModel)]="newDWorkout.title"/>
+  <label>Description</label>
+  <input [(ngModel)]="newDWorkout.description"/>
+  <label>Date</label>
+  <input [(ngModel)]="newDWorkout.workoutDay"/>
+<button (click)="saveDay()">Save</button>
+</form >

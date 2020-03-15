@@ -24,26 +24,25 @@
   </tbody>
 </table>
 
-<form name="exerciseForm">
+<form [formGroup]="exerciseForm">
   <mat-form-field class="example-full-width">
   
    
     <mat-label for="title">Title</mat-label>
-<input matInput [(ngModel)]="newExercise.title" name="title" placeholder="name of workout"/>
+<input matInput [(ngModel)]="newExercise.title" formControlName="title" placeholder="name of workout"/>
 </mat-form-field>
 
 <mat-form-field class="example-full-width">
 <mat-label for="description">Description</mat-label>
-<input matInput [(ngModel)]="newExercise.description" name="description" placeholder="Sets? How many?" />
+<input matInput [(ngModel)]="newExercise.description" formControlName="description" placeholder="Sets? How many?" />
 </mat-form-field>
-
 
 
 
 <mat-form-field>
   <mat-label>Type</mat-label>
-  <mat-select>
-    <mat-option [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" name="type">{{e.title}}</mat-option>
+  <mat-select  formControlName="workoutType">
+    <mat-option [(value)]="newExercise.exerciseTypeId" [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" [ngModelOptions]="{standalone: true}"  >{{e.title}}</mat-option>
   
   </mat-select>
 </mat-form-field>
@@ -55,6 +54,7 @@
 </mat-select>  
 </mat-form-field> -->
 
+
 <!-- <mat-form-field appearance="fill">
   <mat-label>Select</mat-label>
   <mat-select>
@@ -65,7 +65,7 @@
 
     <mat-form-field class="example-full-width">
       <mat-label for="title">Calories Burned</mat-label>
-      <input matInput type="number"  [(ngModel)]="newExercise.calories" name="calories" placeholder="How many calories will this burn" />
+      <input matInput type="number"  [(ngModel)]="newExercise.calories" formControlName="calories" placeholder="How many calories will this burn" />
       </mat-form-field>
 
 

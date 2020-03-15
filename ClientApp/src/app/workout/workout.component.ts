@@ -7,7 +7,7 @@ import {MatInput} from '@angular/material';
 import {MatSort} from '@angular/material/sort';
 import {MatFormFieldControl} from '@angular/material';
 import {Workout} from '../daily/daily.component';
-import { FormBuilder, FormGroup  } from '@angular/forms';
+import { FormBuilder, FormGroup ,FormControl } from '@angular/forms';
 
 
 @Component({
@@ -19,19 +19,19 @@ export class WorkoutComponent implements OnInit {
   public exercises: Exercise[];
   public newExercise: Exercise = {id: undefined, title: '', description: '', exerciseTypeId:undefined,  workoutType:undefined ,  workoutExercises:  [] ,calories:0 }
  public ET: ExerciseType[];
- public ExT:ExerciseType;
+ //public ExT:ExerciseType;
   exerciseForm: FormGroup;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private formBuilder: FormBuilder,) { 
-    // this.exerciseForm= this.formBuilder.group({
-    //   title:"",
-    //   description:"",
-    //   exerciseType:0,
-    //   workoutType: 0,
-    //   calories:0
+    this.exerciseForm= this.formBuilder.group({
+      title:"",
+      description:"",
+      exerciseType:0,
+      workoutType: 0,
+      calories:0
 
 
-    // });
+    });
   }
 
  async  ngOnInit() {

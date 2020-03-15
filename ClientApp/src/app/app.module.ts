@@ -64,6 +64,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatBottomSheetModule,
     ReactiveFormsModule,
     MatSelectModule
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
