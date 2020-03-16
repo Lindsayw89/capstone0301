@@ -24,7 +24,7 @@ public workouts: Workout[];
 
     // this.dailyWorkouts = await this.http.get<WorkoutExercise[]>(this.baseUrl + 'workoutexercises').toPromise();
     // console.log(this.dailyWorkouts); //FIX
-    this.workouts= await this.http.get<Workout[]>(this.baseUrl +'workout').toPromise();
+    this.refreshTable();
     console.log(this.workouts);
   
   }
@@ -33,22 +33,26 @@ public workouts: Workout[];
   }
 
   openBottomSheet(dw:Workout): void {
-    this._bottomSheet.open(PopupWorkoutComponent, {data: dw});
+    this._bottomSheet.open(PopupWorkoutComponent, {data: {workout: dw, selfPass: this}});
   }
  
   async saveDay() {
     console.log(this.newDWorkout);
     await this.http.post<Workout[]>(this.baseUrl + 'workout', this.newDWorkout).toPromise();
     this.newDWorkout = {id: undefined, title: '', description: '', workoutDay: new Date(),    workoutExercises:  []  }
-    this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
-
+   this.refreshTable();
+}
+public async refreshTable(){
+  this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
+  console.log("pop");
+  console.log(this.workouts);
 }
 
 
 }
 export interface WorkoutExercise {
   id: number;
-  workout: Workout;
+  workout: Workout;  // not sure if these 2 should be arrays or not
   exercise: Exercise;
  
  

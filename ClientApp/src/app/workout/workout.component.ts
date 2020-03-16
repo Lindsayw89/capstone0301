@@ -61,6 +61,9 @@ async deleteWorkout(id:number) {
   this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
 
 }
+ test(){
+  console.log(this.newExercise);
+}
 
 }
 

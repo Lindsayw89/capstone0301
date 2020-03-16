@@ -41,6 +41,10 @@ namespace capstone.Controllers
         [HttpPost]
         public WorkoutExercise Post([FromBody]WorkoutExercise workoutExercise)
         {
+            workoutExercise.WorkoutForeignKey = workoutExercise.workout.id;
+            workoutExercise.ExerciseForeignKey = workoutExercise.exercise.id;
+            workoutExercise.workout = null;
+            workoutExercise.exercise = null;
             using (var context = new ApplicationDbContext())
             {
                 context.WorkoutExercises.Add(workoutExercise);

@@ -35,19 +35,17 @@ namespace capstone.Controllers
 
 
 
-
-
-
-
-
-        [HttpGet("{workoutDate}")]
-        public IEnumerable<Workout> Getdate(DateTime workoutDate)
+        [HttpGet("{id}")]
+        public Workout Getid(int id)
         {
             
             using (var context = new ApplicationDbContext())
             {
-                var workoutdatelist = context.Workouts.Where(w=>w.workoutDay==workoutDate).ToList();
-               return workoutdatelist;             
+                return context.Workouts.
+                     Include(w => w.workoutExercises)
+                     .ThenInclude(w => w.exercise)
+                    .Where(w => w.id ==id).FirstOrDefault();
+                            
             }         
         }
 

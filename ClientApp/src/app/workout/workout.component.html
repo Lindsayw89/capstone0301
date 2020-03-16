@@ -26,8 +26,6 @@
 
 <form [formGroup]="exerciseForm">
   <mat-form-field class="example-full-width">
-  
-   
     <mat-label for="title">Title</mat-label>
 <input matInput [(ngModel)]="newExercise.title" formControlName="title" placeholder="name of workout"/>
 </mat-form-field>
@@ -41,8 +39,8 @@
 
 <mat-form-field>
   <mat-label>Type</mat-label>
-  <mat-select  formControlName="workoutType">
-    <mat-option [(value)]="newExercise.exerciseTypeId" [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" [ngModelOptions]="{standalone: true}"  >{{e.title}}</mat-option>
+  <mat-select [(value)]="newExercise.exerciseTypeId" (click)="test()" formControlName="workoutType">
+    <mat-option  [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" [ngModelOptions]="{standalone: true}"  >{{e.title}}</mat-option>
   
   </mat-select>
 </mat-form-field>

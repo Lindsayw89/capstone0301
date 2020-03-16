@@ -28,10 +28,10 @@
 
 <form>
   <label>Name</label>
-  <input [(ngModel)]="newDWorkout.title"/>
+  <input [(ngModel)]="newDWorkout.title" name="title"/>
   <label>Description</label>
-  <input [(ngModel)]="newDWorkout.description"/>
+  <input [(ngModel)]="newDWorkout.description" name="description"/>
   <label>Date</label>
-  <input [(ngModel)]="newDWorkout.workoutDay"/>
-<button (click)="saveDay()">Save</button>
+  <input [(ngModel)]="newDWorkout.workoutDay" name="workoutDay"/>
+<button (click)="saveDay()" placeholder="Date">Save</button>
 </form >

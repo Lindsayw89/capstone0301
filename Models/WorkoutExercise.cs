@@ -22,8 +22,6 @@ namespace capstone.Models
         [ForeignKey("WorkoutForeignKey")]
         public Workout workout{ get; set; }
 
-       
-
 
     }
 }

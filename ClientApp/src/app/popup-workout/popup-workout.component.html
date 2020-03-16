@@ -11,3 +11,10 @@
   <h5 *ngIf ="workout.workoutExercises.length== 0">
     No exercises added</h5>
     <br>
+<h3 *ngIf="!exercises">no exercises</h3>
+    <ul *ngFor="let e of exercises" >
+
+      <button (click)="addExerciseToDay(e)">{{e.title}}</button>
+    </ul>
+
+    <button (click)="showExercises()">Choose exercise</button>
