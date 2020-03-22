@@ -2,7 +2,7 @@
 
 <p *ngIf="!exercises"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="exercises">
+<table class="table table-hover" aria-labelledby="tableLabel" *ngIf="exercises">
   <thead>
     <tr>
       <th>Exercise</th>
@@ -24,7 +24,7 @@
   </tbody>
 </table>
 
-<form [formGroup]="exerciseForm">
+<form class="text-center p-4" [formGroup]="exerciseForm">
   <mat-form-field class="example-full-width">
     <mat-label for="title">Title</mat-label>
 <input matInput [(ngModel)]="newExercise.title" formControlName="title" placeholder="name of workout"/>
@@ -69,7 +69,7 @@
 
 
 
-<button mat-raised-button (click)="saveWorkout()">Save</button>
+<button class="btn btn-outline-dark" mat-raised-button (click)="saveWorkout()">Save</button>
 
 </form>
 

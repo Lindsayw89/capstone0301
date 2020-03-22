@@ -10,6 +10,7 @@ import {Workout} from '../daily/daily.component';
 import { FormBuilder, FormGroup ,FormControl } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-workout',  
   templateUrl: './workout.component.html',
@@ -61,9 +62,7 @@ async deleteWorkout(id:number) {
   this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
 
 }
- test(){
-  console.log(this.newExercise);
-}
+
 
 }
 

@@ -3,18 +3,31 @@
   
 <mat-nav-list *ngFor="let w of workout.workoutExercises">
    
-   <li>{{w.exercise.title}}</li>
-   <li>{{w.exercise.description}}</li>
+   <li>{{w.exercise.title}}- {{w.exercise.description}}</li>
+  
    <br>
     
   </mat-nav-list>
   <h5 *ngIf ="workout.workoutExercises.length== 0">
     No exercises added</h5>
     <br>
-<h3 *ngIf="!exercises">no exercises</h3>
-    <ul *ngFor="let e of exercises" >
+    <div *ngIf="showExercise">
+    <div  *ngFor="let e of exercises" >
+      <button mat-raised-button class="buttonex"  (click)="addExerciseToDay(e)">{{e.title}}</button>
+      
+    </div>
+    <button mat-raised-button class="btn-sm" (click)="hideExercises()">Hide</button>
+    </div>
+  <!-- </Box> -->
+  
 
-      <button (click)="addExerciseToDay(e)">{{e.title}}</button>
-    </ul>
 
-    <button (click)="showExercises()">Choose exercise</button>
+
+
+    
+    <button  mat-raised-button (click)="showExercises()">Choose exercise</button>
+
+<!-- 
+    <select [(value)]="newExerciseAdd.exercise" formControlName="workout">
+      <option mat-raised-button [value]="e.id" [(ngModel)]="newExerciseAdd.exercise" *ngFor="let e of exercises" (click)="addExerciseToDay(e)">{{e.title}}</option>
+      </select> -->

@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 
 import {Exercise} from '../workout/workout.component';
 
-
 @Component({
   selector: 'app-popup-workout', 
   templateUrl: './popup-workout.component.html',
@@ -20,6 +19,7 @@ export class PopupWorkoutComponent implements OnInit {
   public newExerciseAdd: WorkoutExercise;
  public workout: Workout;
  public daily: DailyComponent;
+ public showExercise=false;
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<PopupWorkoutComponent>,
     @Inject(MAT_BOTTOM_SHEET_DATA)public data: any,
@@ -30,7 +30,11 @@ export class PopupWorkoutComponent implements OnInit {
   async ngOnInit() {
     this.workout=this.data.workout;
     this.daily=this.data.selfPass;
-    console.log(this.workout);
+
+    console.log("selfpass");
+    console.log(this.data.selfPass);
+    console.log("workout");
+    console.log(this.data.workout);
     this.resetExercise();
     this._bottomSheetRef.afterDismissed().subscribe(()=>
     this.daily.refreshTable());
@@ -51,9 +55,12 @@ openLink(event: MouseEvent): void {
 
 
 async showExercises() {
-console.log("waffles");
+this.showExercise=true;
  
 
+}
+async hideExercises(){
+  this.showExercise=false;
 }
 
 async addExerciseToDay(exercise: Exercise){
@@ -65,16 +72,11 @@ async addExerciseToDay(exercise: Exercise){
    this.resetExercise();
    // workout and exer might need to be undefined
    this.exercises = await this.http.get<Exercise[]>(this.baseUrl + 'exercise').toPromise();
-  
-
    this.workout= await this.http.get<Workout>(this.baseUrl +'workout/' + this.workout.id).toPromise();
    console.log(this.workout);
    this.Cdr.detectChanges();
- 
-   
-
-
 }
+
 resetExercise(){
   this.newExerciseAdd = {id: undefined, exercise: undefined,  workout: this.workout };
 }

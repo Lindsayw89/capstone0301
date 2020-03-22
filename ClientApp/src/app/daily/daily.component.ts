@@ -1,8 +1,10 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Exercise} from '../workout/workout.component';
 import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {PopupWorkoutComponent} from '../popup-workout/popup-workout.component';
+import {MatTableModule, MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-daily',
@@ -13,6 +15,10 @@ export class DailyComponent implements OnInit {
 public dailyWorkouts:WorkoutExercise[];
 @Input() newDWorkout:Workout = {id: undefined, title: '', description: '',   workoutDay:new Date(),  workoutExercises:  [] }
 public workouts: Workout[];
+
+displayedColumns: string[] = ['title', 'description', 'WorkoutDay'];
+  // dataSource: MatTableDataSource<Workout>; //
+  // @ViewChild(MatSort , {static: true}) sort : MatSort; //
 
 
 
@@ -36,6 +42,8 @@ public workouts: Workout[];
     this._bottomSheet.open(PopupWorkoutComponent, {data: {workout: dw, selfPass: this}});
   }
  
+  
+
   async saveDay() {
     console.log(this.newDWorkout);
     await this.http.post<Workout[]>(this.baseUrl + 'workout', this.newDWorkout).toPromise();
@@ -44,7 +52,7 @@ public workouts: Workout[];
 }
 public async refreshTable(){
   this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
-  console.log("pop");
+  // this.dataSource= new MatTableDataSource(this.workouts);
   console.log(this.workouts);
 }
 

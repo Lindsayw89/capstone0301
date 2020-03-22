@@ -16,4 +16,7 @@ code {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+   background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  }
