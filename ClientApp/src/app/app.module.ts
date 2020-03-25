@@ -25,6 +25,11 @@ import { PopupWorkoutComponent } from './popup-workout/popup-workout.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import { DatepickerComponent } from './datepicker/datepicker.component'
+import{MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +43,8 @@ import {MatSelectModule} from '@angular/material/select';
     BoardComponent,
     WorkoutComponent,
     DailyComponent,
-    PopupWorkoutComponent
+    PopupWorkoutComponent,
+    DatepickerComponent
     
    
   ],
@@ -63,7 +69,17 @@ import {MatSelectModule} from '@angular/material/select';
     MatDialogModule,
     MatBottomSheetModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatNativeDateModule,
+    MatDatepickerModule
+    
+
+
+
+
+
+
    
   ],
   providers: [
@@ -73,4 +89,5 @@ import {MatSelectModule} from '@angular/material/select';
   bootstrap: [AppComponent], 
   entryComponents: [PopupWorkoutComponent]
 })
+
 export class AppModule { }

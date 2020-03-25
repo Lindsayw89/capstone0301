@@ -19,7 +19,7 @@
       <td>{{ e.workoutType.title }}</td>
       <td>{{ e.calories }}</td>
    
-      <button mat-raised-button (click)="deleteWorkout(e.id)">d</button>
+      <!-- <button mat-raised-button (click)="deleteWorkout(e.id)">d</button> -->
     </tr>
   </tbody>
 </table>
@@ -28,7 +28,7 @@
   <mat-form-field class="example-full-width">
     <mat-label for="title">Title</mat-label>
 <input matInput [(ngModel)]="newExercise.title" formControlName="title" placeholder="name of workout"/>
-</mat-form-field>
+</mat-form-field> 
 
 <mat-form-field class="example-full-width">
 <mat-label for="description">Description</mat-label>
@@ -39,7 +39,7 @@
 
 <mat-form-field>
   <mat-label>Type</mat-label>
-  <mat-select [(value)]="newExercise.exerciseTypeId" (click)="test()" formControlName="workoutType">
+  <mat-select [(value)]="newExercise.exerciseTypeId"  formControlName="workoutType">
     <mat-option  [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" [ngModelOptions]="{standalone: true}"  >{{e.title}}</mat-option>
   
   </mat-select>
@@ -69,7 +69,7 @@
 
 
 
-<button class="btn btn-outline-dark" mat-raised-button (click)="saveWorkout()">Save</button>
+<mat-icon type="button"  mat-raised-button (click)="saveWorkout()">add_circle</mat-icon>
 
 </form>
 

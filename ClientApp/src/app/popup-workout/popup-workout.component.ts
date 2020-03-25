@@ -19,6 +19,7 @@ export class PopupWorkoutComponent implements OnInit {
   public newExerciseAdd: WorkoutExercise;
  public workout: Workout;
  public daily: DailyComponent;
+ public exerciseOnDay: WorkoutExercise[]
  public showExercise=false;
 
   constructor(private _bottomSheetRef: MatBottomSheetRef<PopupWorkoutComponent>,
@@ -51,13 +52,21 @@ openLink(event: MouseEvent): void {
   this._bottomSheetRef.dismiss();
   event.preventDefault();
 }
+async delete1Exercise(id: number){
 
+  console.log("dog");
+  console.log(this.workout.workoutExercises);
+  await this.http.delete<WorkoutExercise>(this.baseUrl + 'workoutExercises/' + id).toPromise();
+
+  this.workout = await this.http.get<Workout>(this.baseUrl + 'Workout/' + this.workout.id).toPromise();
+  console.log(this.workout);
+  this.Cdr.detectChanges();
+
+}
 
 
 async showExercises() {
 this.showExercise=true;
- 
-
 }
 async hideExercises(){
   this.showExercise=false;

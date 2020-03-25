@@ -4,19 +4,23 @@
 <mat-nav-list *ngFor="let w of workout.workoutExercises">
    
    <li>{{w.exercise.title}}- {{w.exercise.description}}</li>
-  
+   <mat-icon type="button" (click)="delete1Exercise(w.id)">delete</mat-icon>
+   
    <br>
     
   </mat-nav-list>
   <h5 *ngIf ="workout.workoutExercises.length== 0">
     No exercises added</h5>
     <br>
-    <div *ngIf="showExercise">
-    <div  *ngFor="let e of exercises" >
+    <div class=" exerciseL d-flex flex-row flex-wrap" *ngIf="showExercise">
+     
+     
+    <div *ngFor="let e of exercises" >
       <button mat-raised-button class="buttonex"  (click)="addExerciseToDay(e)">{{e.title}}</button>
       
     </div>
-    <button mat-raised-button class="btn-sm" (click)="hideExercises()">Hide</button>
+    <br>
+    <button mat-raised-button class="btn-info" (click)="hideExercises()">Hide</button>
     </div>
   <!-- </Box> -->
   

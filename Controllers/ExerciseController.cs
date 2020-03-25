@@ -15,21 +15,25 @@ namespace capstone.Controllers
     [Route("[controller]")]
     public class ExerciseController : ControllerBase
     {
-        
+        private ApplicationDbContext context;
+        public ExerciseController(ApplicationDbContext _applicationDbcontext)
+        {
+            context = _applicationDbcontext;
+        }   
 
         [HttpGet]
         public IEnumerable<Exercise> Get()
         {
             Exercise[] exercises = null;
-            using (var context = new ApplicationDbContext())
-            {
+        
+            
                 return context.Exercises
                                         .Include(b => b.workoutType)
                                         //.Include(exer => exer.workoutExercises)
                                         //    .ThenInclude(workExer => workExer.Select(i => i.workout))
                                         .ToArray();
-            }
-            return exercises;
+           
+            
 
         }
 

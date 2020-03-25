@@ -5,6 +5,7 @@ import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet'
 import {PopupWorkoutComponent} from '../popup-workout/popup-workout.component';
 import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import { FormBuilder, FormGroup ,FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-daily',
@@ -13,8 +14,9 @@ import {MatSort} from '@angular/material/sort';
 })
 export class DailyComponent implements OnInit {
 public dailyWorkouts:WorkoutExercise[];
-@Input() newDWorkout:Workout = {id: undefined, title: '', description: '',   workoutDay:new Date(),  workoutExercises:  [] }
+@Input() newDWorkout:Workout = {id: undefined, title: '', description: '',   workoutDay: new Date(),  workoutExercises:  [] }
 public workouts: Workout[];
+dayForm: FormGroup;
 
 displayedColumns: string[] = ['title', 'description', 'WorkoutDay'];
   // dataSource: MatTableDataSource<Workout>; //
@@ -24,7 +26,13 @@ displayedColumns: string[] = ['title', 'description', 'WorkoutDay'];
 
   constructor(private http: HttpClient,
      @Inject('BASE_URL') private baseUrl: string,
-     private _bottomSheet: MatBottomSheet) { }
+     private _bottomSheet: MatBottomSheet, private formBuiler : FormBuilder) { 
+       this.dayForm= this.formBuiler.group({
+        title:"",
+        description:"",
+        workoutDay:0
+       });
+     }
 
   async ngOnInit() {
 
@@ -54,6 +62,12 @@ public async refreshTable(){
   this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
   // this.dataSource= new MatTableDataSource(this.workouts);
   console.log(this.workouts);
+}
+async deleteDay(id: number){
+  await this.http.delete<Workout>(this.baseUrl + 'workout/' + id).toPromise();
+  console.log("wafflepumpkin");
+
+  this.workouts = await this.http.get<Workout[]>(this.baseUrl + 'workout').toPromise();
 }
 
 
