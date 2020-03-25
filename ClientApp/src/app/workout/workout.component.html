@@ -40,7 +40,7 @@
 <mat-form-field>
   <mat-label>Type</mat-label>
   <mat-select [(value)]="newExercise.exerciseTypeId"  formControlName="workoutType">
-    <mat-option  [value]="e.id"[(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" [ngModelOptions]="{standalone: true}"  >{{e.title}}</mat-option>
+    <mat-option  [value]="e.id" ngDefaultControl [(ngModel)]="newExercise.workoutType" *ngFor="let e of ET" [ngModelOptions]="{standalone: true}"  >{{e.title}}</mat-option>
   
   </mat-select>
 </mat-form-field>
