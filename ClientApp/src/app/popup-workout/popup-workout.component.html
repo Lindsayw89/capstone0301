@@ -3,8 +3,8 @@
   
 <mat-nav-list *ngFor="let w of workout.workoutExercises">
    
-   <li>{{w.exercise.title}}- {{w.exercise.description}}</li>
-   <mat-icon type="button" (click)="delete1Exercise(w.id)">delete</mat-icon>
+   <li>{{w.exercise.title}}- {{w.exercise.description}}
+  <span><mat-icon type="button" (click)="delete1Exercise(w.id)">delete</mat-icon></span> </li>
    
    <br>
     
